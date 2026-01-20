@@ -8,7 +8,6 @@ Detta är en interaktiv utställningsdisplay för Wexoe (svensk industriautomati
 
 - **Single-page HTML** – All kod (HTML, CSS, JS) ligger i `index.html`
 - **Ingen build-process** – Rå HTML som serveras direkt
-- **Offline-kapabel** – Alla assets är lokala (inga CDN-beroenden)
 - **Hosting:** Vercel (auto-deploy från GitHub main branch)
 
 ## Målskärm
