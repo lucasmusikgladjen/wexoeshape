@@ -30,10 +30,10 @@
         }
 
         /* ===== HEADER MED WEXOE LOGO ===== */
-        /* ~350px - kompakt men loggan är fortfarande stor */
+        /* ~280px */
         .header {
             background: #11325D;
-            height: 350px;
+            height: 280px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -41,7 +41,7 @@
         }
 
         .header img {
-            height: 200px;
+            height: 180px;
             width: auto;
         }
 
@@ -62,42 +62,57 @@
         }
 
         /* ===== LOGO CLUSTER ===== */
-        /* ~1400px - fyller utrymmet mellan video och controls */
         .logo-cluster {
             flex: 1;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 60px 40px;
+            padding: 40px;
             background: #fff;
             min-height: 0;
-            gap: 50px;
         }
 
-        /* Rockwell centrerad och stor */
+        /* Cirkulär container */
+        .logo-circle {
+            position: relative;
+            width: 1000px;
+            height: 1000px;
+        }
+
+        /* Rockwell centrerad i mitten */
+        .main-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
         .main-logo img {
-            height: 180px;
+            height: 140px;
             width: auto;
         }
 
-        /* Övriga loggor i grid: 4 kolumner, 2 rader */
-        .partner-logos {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 50px 60px;
-            align-items: center;
-            justify-items: center;
-            width: 100%;
-            max-width: 1300px;
+        /* Partner-loggor i en cirkel */
+        .partner-logo {
+            position: absolute;
+            transform: translate(-50%, -50%);
         }
 
-        .partner-logos img {
-            height: 100px;
+        .partner-logo img {
+            height: 70px;
             width: auto;
-            max-width: 280px;
+            max-width: 180px;
             object-fit: contain;
         }
+
+        /* Positionera 7 loggor i en cirkel (radie ~400px) */
+        .partner-logo:nth-child(2) { top: 10%; left: 50%; }      /* Toppen */
+        .partner-logo:nth-child(3) { top: 25%; left: 85%; }      /* Höger upp */
+        .partner-logo:nth-child(4) { top: 60%; left: 92%; }      /* Höger ner */
+        .partner-logo:nth-child(5) { top: 90%; left: 70%; }      /* Botten höger */
+        .partner-logo:nth-child(6) { top: 90%; left: 30%; }      /* Botten vänster */
+        .partner-logo:nth-child(7) { top: 60%; left: 8%; }       /* Vänster ner */
+        .partner-logo:nth-child(8) { top: 25%; left: 15%; }      /* Vänster upp */
 
         /* ===== VIDEO KONTROLLER ===== */
         /* ~768px (20% av 3840) */
@@ -166,17 +181,17 @@
 
         <!-- LOGO CLUSTER -->
         <div class="logo-cluster">
-            <div class="main-logo">
-                <img src="Logos/rockwell.png" alt="Rockwell Automation">
-            </div>
-            <div class="partner-logos">
-                <img src="Logos/hms.png" alt="HMS">
-                <img src="Logos/amci.png" alt="AMCI">
-                <img src="Logos/prosoft.png" alt="ProSoft">
-                <img src="Logos/irinox.png" alt="Irinox">
-                <img src="Logos/hardy.png" alt="Hardy">
-                <img src="Logos/autonox.png" alt="Autonox">
-                <img src="Logos/wittenstein.png" alt="Wittenstein">
+            <div class="logo-circle">
+                <div class="main-logo">
+                    <img src="Logos/rockwell.png" alt="Rockwell Automation">
+                </div>
+                <div class="partner-logo"><img src="Logos/hms.png" alt="HMS"></div>
+                <div class="partner-logo"><img src="Logos/amci.png" alt="AMCI"></div>
+                <div class="partner-logo"><img src="Logos/prosoft.png" alt="ProSoft"></div>
+                <div class="partner-logo"><img src="Logos/irinox.png" alt="Irinox"></div>
+                <div class="partner-logo"><img src="Logos/hardy.png" alt="Hardy"></div>
+                <div class="partner-logo"><img src="Logos/autonox.png" alt="Autonox"></div>
+                <div class="partner-logo"><img src="Logos/wittenstein.png" alt="Wittenstein"></div>
             </div>
         </div>
 
