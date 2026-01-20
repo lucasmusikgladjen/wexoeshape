@@ -21,6 +21,7 @@
         }
 
         /* ===== HUVUDCONTAINER ===== */
+        /* Skärm: 1488 x 3840 px */
         .container {
             display: flex;
             flex-direction: column;
@@ -29,9 +30,10 @@
         }
 
         /* ===== HEADER MED WEXOE LOGO ===== */
+        /* ~575px (15% av 3840) - ska synas på mässan! */
         .header {
             background: #11325D;
-            padding: 30px 20px;
+            height: 575px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -39,11 +41,12 @@
         }
 
         .header img {
-            height: 60px;
+            height: 200px;
             width: auto;
         }
 
         /* ===== VIDEOSPELARE ===== */
+        /* 16:9 på 1488px bred = 837px hög */
         .video-section {
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -59,68 +62,83 @@
         }
 
         /* ===== LOGO CLUSTER ===== */
+        /* ~1400px - fyller utrymmet mellan video och controls */
         .logo-cluster {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 40px 30px;
+            padding: 60px 40px;
             background: #fff;
             min-height: 0;
+            gap: 50px;
         }
 
-        /* Rockwell centrerad och större */
-        .main-logo {
-            margin-bottom: 40px;
-        }
-
+        /* Rockwell centrerad och stor */
         .main-logo img {
-            height: 80px;
+            height: 180px;
             width: auto;
         }
 
-        /* Övriga loggor i grid */
+        /* Övriga loggor i grid: 4 kolumner, 2 rader */
         .partner-logos {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 30px 40px;
+            gap: 50px 60px;
             align-items: center;
             justify-items: center;
-            max-width: 100%;
+            width: 100%;
+            max-width: 1300px;
         }
 
         .partner-logos img {
-            height: 50px;
+            height: 100px;
             width: auto;
-            max-width: 150px;
+            max-width: 280px;
             object-fit: contain;
         }
 
         /* ===== VIDEO KONTROLLER ===== */
+        /* ~1350px - resten av skärmen */
         .video-controls {
             background: #f5f5f5;
-            padding: 25px 20px;
+            padding: 40px 30px;
             flex-shrink: 0;
+            height: 1350px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-controls-title {
+            color: #666;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 30px;
         }
 
         .video-controls-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex: 1;
         }
 
         .video-card {
             background: #11325D;
             color: white;
-            padding: 18px 15px;
-            border-radius: 8px;
+            padding: 35px 25px;
+            border-radius: 12px;
             cursor: pointer;
             text-align: center;
-            font-size: 14px;
+            font-size: 28px;
             font-weight: 500;
             transition: all 0.2s ease;
-            border: 3px solid transparent;
+            border: 4px solid transparent;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .video-card:hover {
@@ -130,15 +148,8 @@
         .video-card.active {
             background: #fff;
             color: #11325D;
-            border: 3px solid #11325D;
+            border: 4px solid #11325D;
             font-weight: 700;
-        }
-
-        /* Sista kortet centrerat om udda antal */
-        .video-card:last-child:nth-child(odd) {
-            grid-column: 1 / -1;
-            max-width: 50%;
-            justify-self: center;
         }
     </style>
 </head>
@@ -178,6 +189,7 @@
 
         <!-- VIDEO KONTROLLER -->
         <div class="video-controls">
+            <div class="video-controls-title">Välj video</div>
             <div class="video-controls-grid" id="videoCards">
                 <!-- Fylls i av JavaScript -->
             </div>
