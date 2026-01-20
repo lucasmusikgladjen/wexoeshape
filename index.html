@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wexoe - Shape Exhibition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ===== RESET ===== */
         * {
@@ -17,7 +20,7 @@
             height: 100%;
             overflow: hidden;
             background: #ffffff;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Open Sans', sans-serif;
         }
 
         /* ===== HUVUDCONTAINER ===== */
@@ -84,21 +87,27 @@
         .logo-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px 80px;
+            gap: 50px 100px;
             align-items: center;
             justify-items: center;
         }
 
         .logo-grid img {
-            height: 80px;
-            width: 200px;
+            height: 100px;
+            width: 280px;
             object-fit: contain;
+        }
+
+        /* Kompensera för loggor med whitespace */
+        .logo-grid img.has-whitespace {
+            height: 120px;
+            width: 320px;
         }
 
         /* ===== VIDEO KONTROLLER ===== */
         /* ~768px (20% av 3840) */
         .video-controls {
-            background: #ffffff;
+            background: #11325D;
             padding: 30px 30px;
             flex-shrink: 0;
             height: 768px;
@@ -114,14 +123,14 @@
         }
 
         .video-card {
-            background: #11325D;
-            color: white;
+            background: #ffffff;
+            color: #11325D;
             padding: 20px 25px;
             border-radius: 10px;
             cursor: pointer;
             text-align: center;
             font-size: 24px;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.2s ease;
             border: 3px solid transparent;
             flex: 1;
@@ -131,13 +140,13 @@
         }
 
         .video-card:hover {
-            background: #1a4a8a;
+            background: #e8edf3;
         }
 
         .video-card.active {
-            background: #fff;
-            color: #11325D;
-            border: 3px solid #11325D;
+            background: transparent;
+            color: #ffffff;
+            border: 3px solid #ffffff;
             font-weight: 700;
         }
     </style>
@@ -165,12 +174,12 @@
             <h2>Våra partners</h2>
             <div class="logo-grid">
                 <img src="Logos/rockwell.png" alt="Rockwell Automation">
-                <img src="Logos/hms.png" alt="HMS">
-                <img src="Logos/prosoft.png" alt="ProSoft">
+                <img src="Logos/hms.png" alt="HMS" class="has-whitespace">
+                <img src="Logos/prosoft.png" alt="ProSoft" class="has-whitespace">
                 <img src="Logos/hardy.png" alt="Hardy">
                 <img src="Logos/amci.png" alt="AMCI">
-                <img src="Logos/irinox.png" alt="Irinox">
-                <img src="Logos/wittenstein.png" alt="Wittenstein">
+                <img src="Logos/irinox.png" alt="Irinox" class="has-whitespace">
+                <img src="Logos/wittenstein.png" alt="Wittenstein" class="has-whitespace">
                 <img src="Logos/autonox.png" alt="Autonox">
             </div>
         </div>
