@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wexoe - Shape Exhibition</title>
+    <style>
+        /* ===== RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #ffffff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        /* ===== HUVUDCONTAINER ===== */
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+        }
+
+        /* ===== HEADER MED WEXOE LOGO ===== */
+        .header {
+            background: #11325D;
+            padding: 30px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .header img {
+            height: 60px;
+            width: auto;
+        }
+
+        /* ===== VIDEOSPELARE ===== */
+        .video-section {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .video-section iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ===== LOGO CLUSTER ===== */
+        .logo-cluster {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 30px;
+            background: #fff;
+            min-height: 0;
+        }
+
+        /* Rockwell centrerad och större */
+        .main-logo {
+            margin-bottom: 40px;
+        }
+
+        .main-logo img {
+            height: 80px;
+            width: auto;
+        }
+
+        /* Övriga loggor i grid */
+        .partner-logos {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px 40px;
+            align-items: center;
+            justify-items: center;
+            max-width: 100%;
+        }
+
+        .partner-logos img {
+            height: 50px;
+            width: auto;
+            max-width: 150px;
+            object-fit: contain;
+        }
+
+        /* ===== VIDEO KONTROLLER ===== */
+        .video-controls {
+            background: #f5f5f5;
+            padding: 25px 20px;
+            flex-shrink: 0;
+        }
+
+        .video-controls-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .video-card {
+            background: #11325D;
+            color: white;
+            padding: 18px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 3px solid transparent;
+        }
+
+        .video-card:hover {
+            background: #1a4a8a;
+        }
+
+        .video-card.active {
+            background: #fff;
+            color: #11325D;
+            border: 3px solid #11325D;
+            font-weight: 700;
+        }
+
+        /* Sista kortet centrerat om udda antal */
+        .video-card:last-child:nth-child(odd) {
+            grid-column: 1 / -1;
+            max-width: 50%;
+            justify-self: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- HEADER -->
+        <div class="header">
+            <img src="Logos/logo.png" alt="Wexoe">
+        </div>
+
+        <!-- VIDEOSPELARE -->
+        <div class="video-section">
+            <iframe 
+                id="youtubePlayer"
+                src=""
+                allow="autoplay; encrypted-media"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- LOGO CLUSTER -->
+        <div class="logo-cluster">
+            <div class="main-logo">
+                <img src="Logos/rockwell.png" alt="Rockwell Automation">
+            </div>
+            <div class="partner-logos">
+                <img src="Logos/hms.png" alt="HMS">
+                <img src="Logos/amci.png" alt="AMCI">
+                <img src="Logos/prosoft.png" alt="ProSoft">
+                <img src="Logos/irinox.png" alt="Irinox">
+                <img src="Logos/hardy.png" alt="Hardy">
+                <img src="Logos/autonox.png" alt="Autonox">
+                <img src="Logos/wittenstein.png" alt="Wittenstein">
+            </div>
+        </div>
+
+        <!-- VIDEO KONTROLLER -->
+        <div class="video-controls">
+            <div class="video-controls-grid" id="videoCards">
+                <!-- Fylls i av JavaScript -->
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ===== VIDEO KONFIGURATION =====
+        const videos = [
+            { id: "vK3lsQomGng", title: "ArmorBlock 5000" },
+            { id: "WHFCWtt8VD8", title: "Emulate RA Plant" },
+            { id: "GohxoHMDCaQ", title: "Micro800 Control System" },
+            { id: "J-Iou5bW-a4", title: "Modernize SLC 500" },
+            { id: "R8dQDCV0I-M", title: "OTTO Delivers" },
+            { id: "dZZHPtb-CJM", title: "PointMax I/O" },
+            { id: "hCaCb4MUipc", title: "Robotics Potential" }
+        ];
+
+        let currentVideoIndex = 0;
+
+        // Hämta element
+        const youtubePlayer = document.getElementById('youtubePlayer');
+        const videoCardsContainer = document.getElementById('videoCards');
+
+        // Bygg YouTube embed URL med autoplay, mute och loop
+        function getYouTubeUrl(videoId) {
+            return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&showinfo=0`;
+        }
+
+        // Skapa videokort
+        function createVideoCards() {
+            videos.forEach((video, index) => {
+                const card = document.createElement('div');
+                card.className = 'video-card' + (index === 0 ? ' active' : '');
+                card.textContent = video.title;
+                card.onclick = () => playVideo(index);
+                videoCardsContainer.appendChild(card);
+            });
+        }
+
+        // Spela video
+        function playVideo(index) {
+            currentVideoIndex = index;
+            youtubePlayer.src = getYouTubeUrl(videos[index].id);
+
+            // Uppdatera aktiv-status på kort
+            document.querySelectorAll('.video-card').forEach((card, i) => {
+                card.classList.toggle('active', i === index);
+            });
+        }
+
+        // Initiera
+        createVideoCards();
+        playVideo(0);
+    </script>
+</body>
+</html>
