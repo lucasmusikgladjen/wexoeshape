@@ -65,6 +65,7 @@
         .logo-cluster {
             flex: 1;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 40px;
@@ -72,46 +73,27 @@
             min-height: 0;
         }
 
-        /* Cirkulär container */
-        .logo-circle {
-            position: relative;
-            width: 1000px;
-            height: 1000px;
+        .logo-cluster h2 {
+            font-size: 36px;
+            font-weight: 400;
+            color: #333;
+            margin-bottom: 50px;
         }
 
-        /* Rockwell centrerad i mitten */
-        .main-logo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        /* Grid med 2 kolumner */
+        .logo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px 80px;
+            align-items: center;
+            justify-items: center;
         }
 
-        .main-logo img {
-            height: 90px;
-            width: auto;
-        }
-
-        /* Partner-loggor i en cirkel */
-        .partner-logo {
-            position: absolute;
-            transform: translate(-50%, -50%);
-        }
-
-        .partner-logo img {
-            height: 55px;
-            width: auto;
+        .logo-grid img {
+            height: 80px;
+            width: 200px;
             object-fit: contain;
         }
-
-        /* Positionera 7 loggor i en cirkel (radie ~400px) */
-        .partner-logo:nth-child(2) { top: 10%; left: 50%; }      /* Toppen */
-        .partner-logo:nth-child(3) { top: 25%; left: 85%; }      /* Höger upp */
-        .partner-logo:nth-child(4) { top: 60%; left: 92%; }      /* Höger ner */
-        .partner-logo:nth-child(5) { top: 90%; left: 70%; }      /* Botten höger */
-        .partner-logo:nth-child(6) { top: 90%; left: 30%; }      /* Botten vänster */
-        .partner-logo:nth-child(7) { top: 60%; left: 8%; }       /* Vänster ner */
-        .partner-logo:nth-child(8) { top: 25%; left: 15%; }      /* Vänster upp */
 
         /* ===== VIDEO KONTROLLER ===== */
         /* ~768px (20% av 3840) */
@@ -180,17 +162,16 @@
 
         <!-- LOGO CLUSTER -->
         <div class="logo-cluster">
-            <div class="logo-circle">
-                <div class="main-logo">
-                    <img src="Logos/rockwell.png" alt="Rockwell Automation">
-                </div>
-                <div class="partner-logo"><img src="Logos/hms.png" alt="HMS"></div>
-                <div class="partner-logo"><img src="Logos/amci.png" alt="AMCI"></div>
-                <div class="partner-logo"><img src="Logos/prosoft.png" alt="ProSoft"></div>
-                <div class="partner-logo"><img src="Logos/irinox.png" alt="Irinox"></div>
-                <div class="partner-logo"><img src="Logos/hardy.png" alt="Hardy"></div>
-                <div class="partner-logo"><img src="Logos/autonox.png" alt="Autonox"></div>
-                <div class="partner-logo"><img src="Logos/wittenstein.png" alt="Wittenstein"></div>
+            <h2>Våra partners</h2>
+            <div class="logo-grid">
+                <img src="Logos/rockwell.png" alt="Rockwell Automation">
+                <img src="Logos/hms.png" alt="HMS">
+                <img src="Logos/prosoft.png" alt="ProSoft">
+                <img src="Logos/hardy.png" alt="Hardy">
+                <img src="Logos/amci.png" alt="AMCI">
+                <img src="Logos/irinox.png" alt="Irinox">
+                <img src="Logos/wittenstein.png" alt="Wittenstein">
+                <img src="Logos/autonox.png" alt="Autonox">
             </div>
         </div>
 
