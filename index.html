@@ -89,17 +89,16 @@
             padding: 50px 60px;
         }
 
-        /* Rockwell överst, full bredd som matchar griden */
+        /* Rockwell överst, centrerad */
         .main-logo {
             display: flex;
             justify-content: center;
             margin-bottom: 40px;
-            width: 100%;
         }
 
         .main-logo img {
-            width: 100%;
-            height: auto;
+            height: 100px;
+            width: auto;
             object-fit: contain;
         }
 
@@ -122,6 +121,12 @@
         .logo-grid img.has-whitespace {
             height: 120px;
             width: 320px;
+        }
+
+        /* Loggor som fyller sin bredd och ser för stora ut */
+        .logo-grid img.slightly-smaller {
+            height: 85px;
+            width: 240px;
         }
 
         /* ===== VIDEO KONTROLLER ===== */
@@ -195,8 +200,8 @@
                     <img src="Logos/autonox.png" alt="Autonox">
                     <img src="Logos/irinox.png" alt="Irinox" class="has-whitespace">
                     <img src="Logos/spectrum.png" alt="Spectrum">
-                    <img src="Logos/amci.png" alt="AMCI">
-                    <img src="Logos/hardy.png" alt="Hardy">
+                    <img src="Logos/amci.png" alt="AMCI" class="slightly-smaller">
+                    <img src="Logos/hardy.png" alt="Hardy" class="slightly-smaller">
                 </div>
             </div>
         </div>
