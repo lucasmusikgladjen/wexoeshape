@@ -33,10 +33,8 @@
         }
 
         /* ===== HEADER MED WEXOE LOGO ===== */
-        /* Logga 240px + padding */
         .header {
             background: #11325D;
-            height: 360px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -46,6 +44,7 @@
         .header img {
             height: 240px;
             width: auto;
+            padding: 60px 0;
         }
 
         /* ===== VIDEOSPELARE ===== */
@@ -90,7 +89,20 @@
             padding: 50px 60px;
         }
 
-        /* Grid med 2 kolumner */
+        /* Rockwell överst, full bredd */
+        .main-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .main-logo img {
+            height: 100px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Grid med 2 kolumner för övriga loggor */
         .logo-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -172,15 +184,18 @@
         <div class="logo-cluster">
             <h2>Våra partners</h2>
             <div class="logo-box">
-                <div class="logo-grid">
+                <div class="main-logo">
                     <img src="Logos/rockwell.png" alt="Rockwell Automation">
+                </div>
+                <div class="logo-grid">
                     <img src="Logos/hms.png" alt="HMS" class="has-whitespace">
-                    <img src="Logos/prosoft.png" alt="ProSoft" class="has-whitespace">
-                    <img src="Logos/hardy.png" alt="Hardy">
-                    <img src="Logos/amci.png" alt="AMCI">
-                    <img src="Logos/irinox.png" alt="Irinox" class="has-whitespace">
                     <img src="Logos/wittenstein.png" alt="Wittenstein" class="has-whitespace">
+                    <img src="Logos/prosoft.png" alt="ProSoft" class="has-whitespace">
                     <img src="Logos/autonox.png" alt="Autonox">
+                    <img src="Logos/irinox.png" alt="Irinox" class="has-whitespace">
+                    <img src="Logos/spectrum.png" alt="Spectrum">
+                    <img src="Logos/amci.png" alt="AMCI">
+                    <img src="Logos/hardy.png" alt="Hardy">
                 </div>
             </div>
         </div>
