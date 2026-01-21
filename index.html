@@ -113,21 +113,12 @@
             font-weight: bold;
         }
 
-        .partner-info .back-btn {
+        .partner-info .partner-image {
             margin-top: 30px;
-            background: #ffffff;
-            color: #11325D;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: contain;
             align-self: flex-start;
-        }
-
-        .partner-info .back-btn:hover {
-            background: #e0e0e0;
         }
 
         /* Klickbara loggor */
@@ -286,7 +277,7 @@
             <h3 id="partnerTitle"></h3>
             <p class="intro" id="partnerIntro"></p>
             <ul id="partnerBenefits"></ul>
-            <button class="back-btn" onclick="hidePartnerInfo()">← Tillbaka till videor</button>
+            <img id="partnerImage" class="partner-image" src="" alt="" style="display: none;">
         </div>
 
         <!-- LOGO CLUSTER -->
@@ -343,7 +334,8 @@
                     "Placeholder: Första värdeskapande punkten",
                     "Placeholder: Andra värdeskapande punkten",
                     "Placeholder: Tredje värdeskapande punkten"
-                ]
+                ],
+                image: null
             },
             wittenstein: {
                 title: "Våra lösningar med Wittenstein",
@@ -352,7 +344,8 @@
                     "Placeholder: Första värdeskapande punkten",
                     "Placeholder: Andra värdeskapande punkten",
                     "Placeholder: Tredje värdeskapande punkten"
-                ]
+                ],
+                image: "img/wittenstein advanced line.png"
             }
         };
 
@@ -405,6 +398,15 @@
                 li.textContent = benefit;
                 benefitsList.appendChild(li);
             });
+
+            // Visa bild om den finns
+            const partnerImage = document.getElementById('partnerImage');
+            if (info.image) {
+                partnerImage.src = info.image;
+                partnerImage.style.display = 'block';
+            } else {
+                partnerImage.style.display = 'none';
+            }
 
             // Visa partner-info, dölj video
             videoSection.style.display = 'none';
