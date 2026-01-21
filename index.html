@@ -63,6 +63,83 @@
             border: none;
         }
 
+        /* ===== PARTNER INFO (ersätter video) ===== */
+        .partner-info {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #11325D;
+            flex-shrink: 0;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 100px;
+            color: #ffffff;
+        }
+
+        .partner-info.active {
+            display: flex;
+        }
+
+        .partner-info h3 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .partner-info .intro {
+            font-size: 24px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .partner-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .partner-info li {
+            font-size: 20px;
+            line-height: 1.6;
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .partner-info li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .partner-info .back-btn {
+            margin-top: 30px;
+            background: #ffffff;
+            color: #11325D;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            align-self: flex-start;
+        }
+
+        .partner-info .back-btn:hover {
+            background: #e0e0e0;
+        }
+
+        /* Klickbara loggor */
+        .logo-grid img.clickable {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .logo-grid img.clickable:hover {
+            transform: scale(1.05);
+        }
+
         /* ===== LOGO CLUSTER ===== */
         .logo-cluster {
             display: flex;
@@ -171,24 +248,14 @@
             padding: 20px 25px;
             border-radius: 12px;
             cursor: pointer;
-            text-align: left;
+            text-align: center;
             font-size: 20px;
+            font-weight: 600;
             transition: all 0.2s ease;
             display: flex;
-            flex-direction: column;
+            align-items: center;
             justify-content: center;
             min-height: 80px;
-        }
-
-        .video-card-title {
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .video-card-description {
-            font-size: 14px;
-            font-weight: 400;
-            color: #555;
         }
 
         .video-card:hover {
@@ -214,6 +281,14 @@
             </iframe>
         </div>
 
+        <!-- PARTNER INFO (ersätter video när aktiv) -->
+        <div class="partner-info" id="partnerInfo">
+            <h3 id="partnerTitle"></h3>
+            <p class="intro" id="partnerIntro"></p>
+            <ul id="partnerBenefits"></ul>
+            <button class="back-btn" onclick="hidePartnerInfo()">← Tillbaka till videor</button>
+        </div>
+
         <!-- LOGO CLUSTER -->
         <div class="logo-cluster">
             <h2>Våra partners</h2>
@@ -222,8 +297,8 @@
                     <img src="Logos/rockwell.png" alt="Rockwell Automation">
                 </div>
                 <div class="logo-grid">
-                    <img src="Logos/hms.png" alt="HMS" class="has-whitespace">
-                    <img src="Logos/wittenstein.png" alt="Wittenstein" class="has-whitespace">
+                    <img src="Logos/hms.png" alt="HMS" class="has-whitespace clickable" onclick="showPartnerInfo('hms')">
+                    <img src="Logos/wittenstein.png" alt="Wittenstein" class="has-whitespace clickable" onclick="showPartnerInfo('wittenstein')">
                     <img src="Logos/prosoft.png" alt="ProSoft" class="has-whitespace pull-up">
                     <img src="Logos/irinox.png" alt="Irinox" class="has-whitespace">
                     <img src="Logos/amci.png" alt="AMCI" class="slightly-smaller pull-up-small">
@@ -249,21 +324,45 @@
     <script>
         // ===== VIDEO KONFIGURATION =====
         const videos = [
-            { id: "vK3lsQomGng", title: "ArmorBlock 5000", description: "Placeholder beskrivning för denna video" },
-            { id: "WHFCWtt8VD8", title: "Emulate RA Plant", description: "Placeholder beskrivning för denna video" },
-            { id: "GohxoHMDCaQ", title: "Micro800 Control System", description: "Placeholder beskrivning för denna video" },
-            { id: "J-Iou5bW-a4", title: "Modernize SLC 500", description: "Placeholder beskrivning för denna video" },
-            { id: "R8dQDCV0I-M", title: "OTTO Delivers", description: "Placeholder beskrivning för denna video" },
-            { id: "dZZHPtb-CJM", title: "PointMax I/O", description: "Placeholder beskrivning för denna video" },
-            { id: "hCaCb4MUipc", title: "Robotics Potential", description: "Placeholder beskrivning för denna video" },
-            { id: "0YvG5NI3vDo", title: "EtherNet/IP In-cabinet", description: "Placeholder beskrivning för denna video" }
+            { id: "vK3lsQomGng", title: "ArmorBlock 5000" },
+            { id: "WHFCWtt8VD8", title: "Emulate RA Plant" },
+            { id: "GohxoHMDCaQ", title: "Micro800 Control System" },
+            { id: "J-Iou5bW-a4", title: "Modernize SLC 500" },
+            { id: "R8dQDCV0I-M", title: "OTTO Delivers" },
+            { id: "dZZHPtb-CJM", title: "PointMax I/O" },
+            { id: "hCaCb4MUipc", title: "Robotics Potential" },
+            { id: "0YvG5NI3vDo", title: "EtherNet/IP In-cabinet" }
         ];
+
+        // ===== PARTNER INFO =====
+        const partnerInfo = {
+            hms: {
+                title: "Våra lösningar med HMS",
+                intro: "Placeholder: Kort intro om partnerskapet med HMS och vad det betyder för kunden.",
+                benefits: [
+                    "Placeholder: Första värdeskapande punkten",
+                    "Placeholder: Andra värdeskapande punkten",
+                    "Placeholder: Tredje värdeskapande punkten"
+                ]
+            },
+            wittenstein: {
+                title: "Våra lösningar med Wittenstein",
+                intro: "Placeholder: Kort intro om partnerskapet med Wittenstein och vad det betyder för kunden.",
+                benefits: [
+                    "Placeholder: Första värdeskapande punkten",
+                    "Placeholder: Andra värdeskapande punkten",
+                    "Placeholder: Tredje värdeskapande punkten"
+                ]
+            }
+        };
 
         let currentVideoIndex = 0;
 
         // Hämta element
         const youtubePlayer = document.getElementById('youtubePlayer');
         const videoCardsContainer = document.getElementById('videoCards');
+        const videoSection = document.querySelector('.video-section');
+        const partnerInfoSection = document.getElementById('partnerInfo');
 
         // Bygg YouTube embed URL med autoplay, mute och loop
         function getYouTubeUrl(videoId) {
@@ -275,10 +374,7 @@
             videos.forEach((video, index) => {
                 const card = document.createElement('div');
                 card.className = 'video-card';
-                card.innerHTML = `
-                    <div class="video-card-title">${video.title}</div>
-                    <div class="video-card-description">${video.description}</div>
-                `;
+                card.textContent = video.title;
                 card.onclick = () => playVideo(index);
                 videoCardsContainer.appendChild(card);
             });
@@ -288,6 +384,37 @@
         function playVideo(index) {
             currentVideoIndex = index;
             youtubePlayer.src = getYouTubeUrl(videos[index].id);
+            
+            // Dölj partner-info och visa video
+            hidePartnerInfo();
+        }
+
+        // Visa partner-info
+        function showPartnerInfo(partner) {
+            const info = partnerInfo[partner];
+            if (!info) return;
+
+            // Fyll i innehåll
+            document.getElementById('partnerTitle').textContent = info.title;
+            document.getElementById('partnerIntro').textContent = info.intro;
+            
+            const benefitsList = document.getElementById('partnerBenefits');
+            benefitsList.innerHTML = '';
+            info.benefits.forEach(benefit => {
+                const li = document.createElement('li');
+                li.textContent = benefit;
+                benefitsList.appendChild(li);
+            });
+
+            // Visa partner-info, dölj video
+            videoSection.style.display = 'none';
+            partnerInfoSection.classList.add('active');
+        }
+
+        // Dölj partner-info
+        function hidePartnerInfo() {
+            videoSection.style.display = 'block';
+            partnerInfoSection.classList.remove('active');
         }
 
         // Initiera
