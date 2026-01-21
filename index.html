@@ -130,19 +130,18 @@
         }
 
         /* ===== VIDEO KONTROLLER ===== */
-        /* ~768px (20% av 3840) */
         .video-controls {
             background: #11325D;
             padding: 20px 100px 30px 100px;
             flex-shrink: 0;
-            height: 768px;
+            height: 500px;
             display: flex;
             flex-direction: column;
         }
 
         .video-controls-grid {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
             flex: 1;
         }
@@ -150,14 +149,13 @@
         .video-card {
             background: #ffffff;
             color: #11325D;
-            padding: 20px 25px;
+            padding: 20px 15px;
             border-radius: 10px;
             cursor: pointer;
             text-align: center;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 600;
             transition: all 0.2s ease;
-            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
