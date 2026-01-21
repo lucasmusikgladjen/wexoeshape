@@ -65,14 +65,12 @@
 
         /* ===== LOGO CLUSTER ===== */
         .logo-cluster {
-            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
             padding: 50px 40px 40px 40px;
             background: #11325D;
-            min-height: 0;
         }
 
         .logo-cluster h2 {
@@ -134,9 +132,14 @@
             background: #11325D;
             padding: 20px 100px 60px 100px;
             flex-shrink: 0;
-            height: 500px;
             display: flex;
             flex-direction: column;
+        }
+
+        /* Spacer för att fylla ut resten av skärmen */
+        .spacer {
+            flex: 1;
+            background: #11325D;
         }
 
         .video-controls-grid {
@@ -149,7 +152,7 @@
         .video-card {
             background: #ffffff;
             color: #11325D;
-            padding: 20px 15px;
+            padding: 25px 15px;
             border-radius: 10px;
             cursor: pointer;
             text-align: center;
@@ -159,6 +162,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 80px;
         }
 
         .video-card:hover {
@@ -210,6 +214,9 @@
                 <!-- Fylls i av JavaScript -->
             </div>
         </div>
+
+        <!-- Spacer för resterande utrymme -->
+        <div class="spacer"></div>
 
     </div>
 
