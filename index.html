@@ -168,21 +168,31 @@
         .video-card {
             background: #ffffff;
             color: #11325D;
-            padding: 25px 15px;
+            padding: 20px 25px;
             border-radius: 12px;
             cursor: pointer;
-            text-align: center;
+            text-align: left;
             font-size: 20px;
-            font-weight: 600;
             transition: all 0.2s ease;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
             min-height: 80px;
         }
 
+        .video-card-title {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .video-card-description {
+            font-size: 14px;
+            font-weight: 400;
+            color: #555;
+        }
+
         .video-card:hover {
-            background: #e8edf3;
+            background: #d0d8e3;
         }
     </style>
 </head>
@@ -239,14 +249,14 @@
     <script>
         // ===== VIDEO KONFIGURATION =====
         const videos = [
-            { id: "vK3lsQomGng", title: "ArmorBlock 5000" },
-            { id: "WHFCWtt8VD8", title: "Emulate RA Plant" },
-            { id: "GohxoHMDCaQ", title: "Micro800 Control System" },
-            { id: "J-Iou5bW-a4", title: "Modernize SLC 500" },
-            { id: "R8dQDCV0I-M", title: "OTTO Delivers" },
-            { id: "dZZHPtb-CJM", title: "PointMax I/O" },
-            { id: "hCaCb4MUipc", title: "Robotics Potential" },
-            { id: "0YvG5NI3vDo", title: "EtherNet/IP In-cabinet" }
+            { id: "vK3lsQomGng", title: "ArmorBlock 5000", description: "Placeholder beskrivning för denna video" },
+            { id: "WHFCWtt8VD8", title: "Emulate RA Plant", description: "Placeholder beskrivning för denna video" },
+            { id: "GohxoHMDCaQ", title: "Micro800 Control System", description: "Placeholder beskrivning för denna video" },
+            { id: "J-Iou5bW-a4", title: "Modernize SLC 500", description: "Placeholder beskrivning för denna video" },
+            { id: "R8dQDCV0I-M", title: "OTTO Delivers", description: "Placeholder beskrivning för denna video" },
+            { id: "dZZHPtb-CJM", title: "PointMax I/O", description: "Placeholder beskrivning för denna video" },
+            { id: "hCaCb4MUipc", title: "Robotics Potential", description: "Placeholder beskrivning för denna video" },
+            { id: "0YvG5NI3vDo", title: "EtherNet/IP In-cabinet", description: "Placeholder beskrivning för denna video" }
         ];
 
         let currentVideoIndex = 0;
@@ -264,8 +274,11 @@
         function createVideoCards() {
             videos.forEach((video, index) => {
                 const card = document.createElement('div');
-                card.className = 'video-card' + (index === 0 ? ' active' : '');
-                card.textContent = video.title;
+                card.className = 'video-card';
+                card.innerHTML = `
+                    <div class="video-card-title">${video.title}</div>
+                    <div class="video-card-description">${video.description}</div>
+                `;
                 card.onclick = () => playVideo(index);
                 videoCardsContainer.appendChild(card);
             });
@@ -275,11 +288,6 @@
         function playVideo(index) {
             currentVideoIndex = index;
             youtubePlayer.src = getYouTubeUrl(videos[index].id);
-
-            // Uppdatera aktiv-status på kort
-            document.querySelectorAll('.video-card').forEach((card, i) => {
-                card.classList.toggle('active', i === index);
-            });
         }
 
         // Initiera
